@@ -1,0 +1,6 @@
+node_modules/
+social_media.db
+social_media.db-shm
+social_media.db-wal
+.env
+.DS_Store

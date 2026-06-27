@@ -1,0 +1,393 @@
+/* ─────────────────────────────────────────
+   feed.css — Home Feed Page
+   ───────────────────────────────────────── */
+
+.feed-page {
+  padding-top: 24px;
+  padding-bottom: 80px;
+  animation: fadeIn 0.4s ease;
+}
+
+/* ── Layout ── */
+.feed-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr 260px;
+  gap: 24px;
+  align-items: start;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sidebar-card {
+  padding: 20px;
+}
+
+.sidebar-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* My Profile widget */
+.my-profile-widget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 24px 20px;
+}
+
+.my-profile-widget .username {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.my-profile-stats {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
+.profile-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.profile-stat strong {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.profile-stat span {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Suggested users */
+.suggested-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  transition: all var(--transition);
+}
+.suggested-user:not(:last-child) {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+
+.suggested-user-info { flex: 1; min-width: 0; }
+.suggested-user-info .name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+.suggested-user-info .handle {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+/* ── Feed Tabs ── */
+.feed-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 4px;
+}
+
+.feed-tab {
+  flex: 1;
+  padding: 9px 16px;
+  background: transparent;
+  border: none;
+  border-radius: calc(var(--radius) - 4px);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.feed-tab.active {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  box-shadow: 0 2px 12px var(--accent-glow);
+}
+.feed-tab:not(.active):hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* ── Create Post Box ── */
+.create-post-box {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.create-post-input-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.create-post-textarea {
+  flex: 1;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 14px 16px;
+  resize: none;
+  min-height: 80px;
+  max-height: 200px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  line-height: 1.5;
+}
+.create-post-textarea::placeholder { color: var(--text-muted); }
+.create-post-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.create-post-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.char-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+.char-count.warning { color: var(--warning); }
+.char-count.danger  { color: var(--danger); }
+
+/* ── Post Card ── */
+.post-card {
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: transform var(--transition), border-color var(--transition);
+  animation: fadeIn 0.3s ease;
+}
+.post-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(124, 58, 237, 0.2);
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.post-author-info { flex: 1; }
+.post-author-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  display: block;
+  transition: color var(--transition);
+}
+.post-author-name:hover { color: var(--accent-light); }
+
+.post-time {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.post-menu {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  font-size: 1.1rem;
+  transition: all var(--transition);
+}
+.post-menu:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.post-content {
+  font-size: 0.97rem;
+  line-height: 1.65;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+  word-break: break-word;
+}
+
+.post-image {
+  width: 100%;
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+  max-height: 400px;
+  object-fit: cover;
+}
+
+.post-actions {
+  display: flex;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.post-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition);
+}
+.post-action-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+.post-action-btn.liked {
+  color: var(--accent2);
+}
+.post-action-btn.liked .action-icon { animation: heartPop 0.3s ease; }
+
+.action-icon { font-size: 1.1rem; line-height: 1; }
+
+/* ── Floating compose button (mobile) ── */
+.fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px var(--accent-glow);
+  transition: all var(--transition);
+  z-index: 50;
+  display: none;
+}
+.fab:hover { transform: scale(1.1); }
+
+/* ── Search bar (right sidebar) ── */
+.search-input-wrap {
+  position: relative;
+}
+.search-input-wrap .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+.search-bar {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.88rem;
+  padding: 10px 14px 10px 36px;
+  transition: border-color var(--transition);
+}
+.search-bar:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.search-bar::placeholder { color: var(--text-muted); }
+
+.search-results {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.search-result-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition);
+  text-decoration: none;
+}
+.search-result-item:hover { background: var(--bg-hover); }
+.search-result-item .name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+@keyframes heartPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .feed-layout {
+    grid-template-columns: 200px 1fr;
+  }
+  .sidebar:last-child { display: none; }
+}
+
+@media (max-width: 720px) {
+  .feed-layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar { display: none; }
+  .fab { display: flex; }
+}

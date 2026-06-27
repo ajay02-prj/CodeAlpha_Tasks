@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feed — Nexus</title>
+  <meta name="description" content="Your Nexus feed — discover and engage with posts from people you follow." />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/feed.css" />
+</head>
+<body>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav class="navbar">
+  <a class="navbar-brand" href="/feed.html">🌐 Nexus</a>
+
+  <div class="navbar-actions">
+    <div class="nav-avatar" id="nav-avatar" title="My Profile"></div>
+    <button class="btn btn-ghost btn-sm" id="logout-btn">Sign Out</button>
+  </div>
+</nav>
+
+<!-- ══════════ PAGE ══════════ -->
+<main class="feed-page">
+  <div class="feed-layout">
+
+    <!-- ── Left Sidebar ── -->
+    <aside class="sidebar">
+      <div class="glass-card my-profile-widget" id="my-profile-widget">
+        <div class="spinner"></div>
+      </div>
+
+      <div class="glass-card sidebar-card">
+        <div class="sidebar-title">Quick Links</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a href="/feed.html" class="btn btn-ghost btn-sm" style="justify-content:flex-start">🏠 Home</a>
+          <a id="profile-link" href="#" class="btn btn-ghost btn-sm" style="justify-content:flex-start">👤 My Profile</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Main Feed ── -->
+    <section>
+      <!-- Feed Tabs -->
+      <div class="feed-tabs">
+        <button class="feed-tab active" data-tab="explore">🌍 Explore</button>
+        <button class="feed-tab" data-tab="following">👥 Following</button>
+      </div>
+
+      <!-- Create Post Box -->
+      <div class="glass-card create-post-box">
+        <div class="create-post-input-row">
+          <div id="create-post-avatar"></div>
+          <textarea
+            class="create-post-textarea"
+            id="post-content"
+            placeholder="What's on your mind? Share something with the world..."
+            maxlength="500"
+            rows="3"
+          ></textarea>
+        </div>
+        <div class="create-post-actions">
+          <span class="char-count" id="char-count">0/500</span>
+          <button class="btn btn-primary" id="create-post-btn" disabled>
+            ✨ Post
+          </button>
+        </div>
+      </div>
+
+      <!-- Posts Feed -->
+      <div id="feed-list">
+        <div class="loading-overlay">
+          <div class="spinner"></div>
+          <span>Loading posts...</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Right Sidebar ── -->
+    <aside class="sidebar">
+      <!-- Search -->
+      <div class="glass-card sidebar-card">
+        <div class="sidebar-title">Find People</div>
+        <div class="search-input-wrap">
+          <span class="search-icon">🔍</span>
+          <input
+            class="search-bar"
+            type="search"
+            id="search-bar"
+            placeholder="Search users..."
+            autocomplete="off"
+          />
+        </div>
+        <div class="search-results" id="search-results"></div>
+      </div>
+
+      <!-- Suggested users placeholder -->
+      <div class="glass-card sidebar-card">
+        <div class="sidebar-title">About Nexus</div>
+        <p class="text-sm text-muted" style="line-height:1.6">
+          A mini social platform to share posts, comment, like, and connect with others.
+        </p>
+        <p class="text-sm text-muted" style="margin-top:8px">Built with Express.js + SQLite 🚀</p>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<!-- Floating Action Button (mobile) -->
+<button class="fab" id="fab-compose" title="New Post">✏️</button>
+
+<!-- Toast container -->
+<div id="toast-container"></div>
+
+<script src="/js/api.js"></script>
+<script src="/js/feed.js"></script>
+
+<script>
+  // Set profile link
+  document.addEventListener('DOMContentLoaded', () => {
+    const user = getUser();
+    if (user) {
+      document.getElementById('profile-link').href = `/profile.html?u=${user.username}`;
+    }
+    // FAB scrolls to create post on mobile
+    document.getElementById('fab-compose')?.addEventListener('click', () => {
+      document.getElementById('post-content')?.focus();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>

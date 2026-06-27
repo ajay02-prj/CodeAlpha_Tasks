@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post — Nexus</title>
+  <meta name="description" content="View and comment on this post on Nexus." />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/post.css" />
+</head>
+<body>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav class="navbar">
+  <a class="navbar-brand" href="/feed.html">🌐 Nexus</a>
+  <div class="navbar-actions">
+    <div class="nav-avatar" id="nav-avatar" title="My Profile"></div>
+    <button class="btn btn-ghost btn-sm" id="logout-btn">Sign Out</button>
+  </div>
+</nav>
+
+<!-- ══════════ POST DETAIL ══════════ -->
+<main class="post-detail-page">
+  <div class="post-detail-wrap">
+
+    <!-- Back Button -->
+    <a href="/feed.html" class="back-link">← Back to Feed</a>
+
+    <!-- Post Card (filled by JS) -->
+    <div id="post-detail-container">
+      <div class="loading-overlay">
+        <div class="spinner"></div>
+        <span>Loading post...</span>
+      </div>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="glass-card comments-section">
+      <h2 class="comments-title">
+        💬 Comments
+        <span class="count-badge" id="comments-count-badge">0</span>
+      </h2>
+
+      <!-- Add Comment Form -->
+      <div class="add-comment-box">
+        <div id="comment-form-avatar"></div>
+        <form id="comment-form" style="flex:1;display:flex;flex-direction:column;gap:8px" novalidate>
+          <textarea
+            class="comment-input"
+            id="comment-input"
+            placeholder="Write a comment... (Ctrl+Enter to submit)"
+            rows="2"
+            maxlength="300"
+          ></textarea>
+          <div style="text-align:right">
+            <button class="btn btn-primary btn-sm" type="submit" id="comment-submit-btn" disabled>
+              Post Comment
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Comments List (filled by JS) -->
+      <div id="comments-container">
+        <div class="loading-overlay" style="padding:30px">
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- Toast -->
+<div id="toast-container"></div>
+
+<script src="/js/api.js"></script>
+<script src="/js/post.js"></script>
+</body>
+</html>
