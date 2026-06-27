@@ -1,0 +1,195 @@
+/* ─────────────────────────────────────────
+   auth.css — Login & Register Pages
+   ───────────────────────────────────────── */
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Animated Background ── */
+.auth-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.auth-bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.25;
+  animation: blobFloat 8s ease-in-out infinite alternate;
+}
+.auth-bg-blob:nth-child(1) {
+  width: 500px; height: 500px;
+  background: var(--accent);
+  top: -150px; left: -150px;
+  animation-delay: 0s;
+}
+.auth-bg-blob:nth-child(2) {
+  width: 400px; height: 400px;
+  background: var(--accent2);
+  bottom: -120px; right: -100px;
+  animation-delay: 3s;
+}
+.auth-bg-blob:nth-child(3) {
+  width: 300px; height: 300px;
+  background: #06b6d4;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 1.5s;
+}
+
+/* ── Card ── */
+.auth-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  padding: 44px 40px;
+  animation: fadeIn 0.5s ease;
+}
+
+/* ── Logo / Brand ── */
+.auth-logo {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-logo-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin: 0 auto 16px;
+  box-shadow: 0 8px 32px var(--accent-glow);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+.auth-logo h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-light), var(--accent2));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.03em;
+}
+
+.auth-logo p {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  margin-top: 4px;
+}
+
+/* ── Form ── */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.auth-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.auth-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin: 4px 0;
+}
+.auth-divider::before,
+.auth-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+.auth-footer a {
+  color: var(--accent-light);
+  font-weight: 600;
+}
+.auth-footer a:hover { color: #fff; }
+
+/* ── Error message ── */
+.auth-error {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 0.85rem;
+  color: #fca5a5;
+  display: none;
+}
+.auth-error.show { display: block; }
+
+/* ── Password strength bar ── */
+.password-strength {
+  margin-top: 4px;
+  display: flex;
+  gap: 4px;
+}
+.strength-bar {
+  height: 3px;
+  flex: 1;
+  border-radius: 2px;
+  background: var(--border);
+  transition: background var(--transition);
+}
+.strength-bar.active-weak   { background: var(--danger); }
+.strength-bar.active-medium { background: var(--warning); }
+.strength-bar.active-strong { background: var(--success); }
+
+/* ── Button loading state ── */
+.btn-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes blobFloat {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(30px, 40px) scale(1.1); }
+}
+
+@media (max-width: 500px) {
+  .auth-card { padding: 32px 24px; }
+  .auth-logo-icon { width: 52px; height: 52px; font-size: 1.5rem; }
+}
